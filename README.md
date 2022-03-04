@@ -1,4 +1,4 @@
-# plugin-AdministradorUSerBH
+# plugin-AdministradorUserBH
 
 Clonando git clone https://github.com/dvdti/plugin-AdministratorUserBH.git
 
