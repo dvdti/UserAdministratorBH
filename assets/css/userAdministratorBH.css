@@ -1,0 +1,10 @@
+form .btn-box-term input[type='submit'] {
+	background-color:#e2e2e2;
+	border:1px solid #b3b3b3;
+	color:#666;
+	vertical-align: top;
+}
+input[type='submit']:hover {
+	background-color:#b3b3b3;
+	border:1px solid #e2e2e2;
+}
