@@ -366,6 +366,6 @@
 <?php $app->applyHookBoundTo($this, 'adminblockuser', array("userEmail"=>$user->email, "userStatus"=>$user->status )); ?>
 <?php $app->applyHookBoundTo($this, 'adminunpublishcontentuser', array("userEmail"=>$user->email, "userStatus"=>$user->status )); ?>
 </div>
-<?php 
+
 
 

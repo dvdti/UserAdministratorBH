@@ -12,6 +12,13 @@ Ativando no docker
 Incluir a linha no arquivo docker-compose.prod.yml em volumes 
   - ../plugins/AdministratorUserBH:/var/www/html/protected/application/plugins/AdministratorUserBH
 
+
+Redefinidos link dos termos de uso. Inclua no conf-base.php do tema.
+  'auth.config' => [
+        'urlTermsOfUse' => env('auth','termos-e-condicoes-de-uso'),
+    ],
+
+
 Funções do plugin
 1- Define novo termo de uso
 a) Criar um parametro de data que indica a partir de quando o novo aceite no termo será exigido.
@@ -24,3 +31,6 @@ a) Ao editar o perfil de um usuário aparecerá os botões:
  Bloquear usuário: Aparece se o usuário estiver ativi e muda o status do usário para -9.
  Desbloquear usuário: Aparece se o usuário estiver inativo com status -9 e muda o status para 1
  Despublicar conteúdos do usuário: Todos os agentes, espaços, eventos, projetos e oportunidades do usuário que estão publicados viram rascunho. 
+
+
+

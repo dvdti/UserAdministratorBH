@@ -19,20 +19,9 @@ class Plugin extends \MapasCulturais\Plugin {
 	public static $dateNewTerm = '2022/03/04 14:11:00';
 
     public function _init() {
-        // enqueue scripts and styles
+        
         $app = App::i();
-	   // $plugin = $this;
-		// Load JS & CSS
-      /*  $app->hook('<<GET|POST>>(auth.<<*>>)', function() use ($app) {
-           
-            $app->view->enqueueScript('app', 'userAdministratorBH', 'js/userAdministratorBH.js');
-            $app->view->enqueueStyle('app', 'userAdministratorBH','css/userAdministratorBH.css');
-            //$app->view->enqueueStyle('app', 'fontawesome', 'https://use.fontawesome.com/releases/v5.8.2/css/all.css');
-        });*/
-
-
-
-        // add hooks
+	   
         $app->hook('template(<<*>>):end', function() use ($app) {
            	if(!$app->user->is('guest') && !self::checkAcceptedTerms() ){
 				if("$_SERVER[REQUEST_URI]" != "/autenticacao/termos-e-condicoes-de-uso/" ){ 
