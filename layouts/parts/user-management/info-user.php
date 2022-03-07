@@ -2,7 +2,7 @@
   use \MapasCulturais\i;
   
   $app = MapasCulturais\App::i();
-  
+
   $role_definitions = $app->getRoles();
 
   $current_user = $app->user;
@@ -60,6 +60,10 @@
       <span class="js-editable editable-click editable-empty" data-edit="" data-original-title="<?php i::esc_attr_e("data bloqueio"); ?>" data-emptytext="">
         <?php echo $user->getMetadata('dateBlockUser'); ?> 
       </span> <br />
+
+
+
+
     </div>
 
     <span class="clearfix clear" />
@@ -72,7 +76,6 @@
       <li><a href="#eventos" rel='noopener noreferrer'><?php i::_e("Eventos");?></a></li>
       <li><a href="#projetos" rel='noopener noreferrer'><?php i::_e("Projetos");?></a></li>
       <li><a href="#oportunidades" rel='noopener noreferrer'><?php i::_e("Oportunidades");?></a></li>
-      <li><a href="#inscricoes" rel='noopener noreferrer'><?php i::_e("Inscrições");?></a></li>
       <li><a href="#permissoes" rel='noopener noreferrer'><?php i::_e("Permissões");?></a></li>
       <li><a href="#atividade" rel='noopener noreferrer'><?php i::_e("Atividades");?></a></li>
     </ul>
@@ -219,24 +222,6 @@
         <?php $this->part('user-management/user-info/info-opportunities', array('opportunities' => $user->archivedOpportunities)); ?>
       </div>
     </div>
-
-    <div id="inscricoes" class="aba-content">
-      <div class="tab-table registration">
-        <button class="tablinks active" data-entity="inscricoes" data-tab="inscricoes-selecionadas">    <?php i::_e("Selecionadas");?>      (<?php echo count($user->getRegistrationsByStatus(10)); ?>)  </button>
-        <button class="tablinks" data-entity="inscricoes" data-tab="inscricoes-rascunhos"> <?php i::_e("Rascunhos");?>   (<?php echo count($user->getRegistrationsByStatus(0)); ?>)    </button>
-        <button class="tablinks" data-entity="inscricoes" data-tab="inscricoes-lixeira">   <?php i::_e("Lixeira");?>     (<?php echo count($user->getRegistrationsByStatus(-10)); ?>)  </button>
-      </div>
-
-      <div id="inscricoes-selecionadas" class="tab-content-table" style="display: block;">
-        <?php $this->part('user-management/user-info/info-registrations', array('registrations' => $user->getRegistrationsByStatus(10))); ?>
-      </div>
-      <div id="inscricoes-rascunhos" class="tab-content-table">
-        <?php $this->part('user-management/user-info/info-registrations', array('registrations' => $user->getRegistrationsByStatus(0))); ?>
-      </div>
-      <div id="inscricoes-lixeira" class="tab-content-table">
-        <?php $this->part('user-management/user-info/info-registrations', array('registrations' => $user->getRegistrationsByStatus(-10))); ?>
-      </div>      
-    </div>
   
     <div id="permissoes" class="aba-content">
       <div>
@@ -356,16 +341,15 @@
               <td>{{history.objectId}}</td>
               <td>{{history.objectType}}</td>
               <td>{{history.message}}</td>
-              <td>{{history.createTimestamp.date | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+              <td>{{history.createTimestamp.date | date: 'dd-mm-yyyy HH:mm:ss'}}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
   </div>
 <?php $app->applyHookBoundTo($this, 'adminblockuser', array("userEmail"=>$user->email, "userStatus"=>$user->status )); ?>
 <?php $app->applyHookBoundTo($this, 'adminunpublishcontentuser', array("userEmail"=>$user->email, "userStatus"=>$user->status )); ?>
+
 </div>
-
-
-
