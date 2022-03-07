@@ -8,6 +8,9 @@ Ativando em plugin.php, adicione na sua array de Plugins:
 
  'UserAdministratorBH' => ['namespace' => 'UserAdministratorBH'],
 
+Ativando no docker
+Incluir a linha no arquivo docker-compose.prod.yml em volumes 
+  - ../plugins/AdministratorUserBH:/var/www/html/protected/application/plugins/AdministratorUserBH
 
 
 Redefinidos link dos termos de uso. Inclua no conf-base.php do tema.
