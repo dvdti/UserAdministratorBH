@@ -12,7 +12,7 @@ $(document).ready(function(){
             $('input[type="submit"]').css('color', '#666');
         }
     });
-    $('#user-managerment-adminBlockUser').click(function() {
+   /* $('#user-managerment-adminBlockUser').click(function() {
         let email = $('#email-to-admin-set-block').val();
         $.post(MapasCulturais.baseURL + 'auth/adminblockuser', { email: email}, function(r){
             if(r.error) {
@@ -49,7 +49,41 @@ $(document).ready(function(){
     $('#user-managerment-cancel-unpublish').click(function(){
         MapasCulturais.Modal.close('#admin-unpublish-content-user');
     });
+   /* $('#search-filter .submenu-dropdown li#user-blocked-filter').click(function(){
+        let nome = $('#campo-de-busca').val();
+        $.post(MapasCulturais.baseURL + 'auth/adminsearchuserblockerd', { nome: nome }, function(r){
+            if(r.error) {
+                alert(r.error);
+                return;
+            }
+               //alert("id: " + r.users[0].userId + " nome:" + r.users[0].agentName + " usr: " +  r.users[0].agentId);
+             var users   = [
+                    {agentName:'John', agentId:25, userId:12},
+                    {agentName:'John1', agentId:251, userId:121},
+                    {agentName:'John2', agentId:252, userId:122},
+                  ];
+                //location.reload();
+            return users;
+            //location.reload();
+        });
+
+    });
+  /*  (function(){
+        var app = angular.module('ngRepeatUser',[]);
+        app.controller('repeatController', function($scope) {
+           //alert("id: " + r.users[0].userId + " nome:" + r.users[0].agentName + " usr: " +  r.users[0].agentId);
+           $scope.users   = ['a','b','c'];
+               /* {agentName:'John', agentId:25, userId:12},
+                {agentName:'John1', agentId:251, userId:121},
+                {agentName:'John2', agentId:252, userId:122},
+              ];*/
+            //location.reload();
+       // });
+   // });
+    
 });
+
+    //location.reload();
 
 
 

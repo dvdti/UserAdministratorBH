@@ -66,7 +66,7 @@ class Plugin extends \MapasCulturais\Plugin {
             $user->save(true);
             $app->em->flush();
 
-            $this->json (array("status"=>-9,"user"=>$user));
+           // $this->json (array("status"=>-9,"user"=>$user));
 			
         });
 		$app->hook('POST(auth.adminunlockuser)',function () use ($app) {
@@ -82,8 +82,6 @@ class Plugin extends \MapasCulturais\Plugin {
             $app->enableAccessControl();
             $user->save(true);
             $app->em->flush();
-
-            $this->json (array("status"=>1,"user"=>$user));
 			
         });
         $app->hook('adminblockuser', function ($userEmail,$userStatus) use($app){
@@ -91,8 +89,7 @@ class Plugin extends \MapasCulturais\Plugin {
             if(!$app->user->is('admin')) {
                 return;
             }
-			$app->view->enqueueScript('app', 'userAdministratorBH', 'js/userAdministratorBH.js');
-			            
+						            
 			if($userStatus == 1){
 				echo
 				'
@@ -185,6 +182,33 @@ class Plugin extends \MapasCulturais\Plugin {
 				
 			
         });
+		$app->hook('POST(auth.adminsearchuserblockerd)',function () use ($app) {
+                      
+            $name = $this->data['nome'];
+			if(strlen($name) < 3 ){
+				$this->json (array("error"=>"Informe pelo menos três caracteres."));
+			}else{
+				$users = self::getAgentBlockFromDB($name);
+				if(empty($users)){
+					$this->json (array("error"=>"Nenhum resultado encontrado."));	
+				}else{
+					$this->json (array("users" => $users));
+				}
+			}
+			
+		});
+		$app->hook('adminsearchuserblock', function ($userEmail) use($app){
+
+            if(!$app->user->is('admin')) {
+                return;
+            }
+			$app->view->enqueueScript('app', 'userAdministratorBH', 'js/userAdministratorBH.js');
+			            
+			echo
+			'<li tabindex="7" id="user-blocked-filter" data-entity="user"><span class="icon icon-user"></span>Bloqueados</li>';
+				
+			
+        });
     }
 
     public function register() {
@@ -216,4 +240,20 @@ class Plugin extends \MapasCulturais\Plugin {
 		
 	}
 
+	public static function getAgentBlockFromDB($name) {
+        $app = App::i();
+         $checkAgentsBlocQuery = $app->em->createQuery("SELECT a FROM \MapasCulturais\Entities\Agent a WHERE LOWER(a.name) like :nome ");
+			 //SELECT u FROM \MapasCulturais\Entities\User u WHERE LOWER(u.id) = 17");
+        $checkAgentsBlocQuery->setParameter('nome', strtolower($name).'%');
+        $result = $checkAgentsBlocQuery->getResult();
+        $Agents = array();
+        if(!empty($result)){
+			foreach($result as $res){
+				if($res->user->profile->id === $res->id && $res->user->status == '-9'){
+					array_push($Agents, array("agentId"=>$res->id, "agentName"=>$res->name,"userId"=>$res->user->id));;
+				}				
+			}            
+        }
+        return $Agents;
+    }
 }
