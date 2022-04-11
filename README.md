@@ -13,12 +13,6 @@ Incluir a linha no arquivo docker-compose.prod.yml em volumes
   - ../plugins/AdministratorUserBH:/var/www/html/protected/application/plugins/AdministratorUserBH
 
 
-Redefinidos link dos termos de uso. Inclua no conf-base.php do tema.
-  'auth.config' => [
-        'urlTermsOfUse' => env('auth','termos-e-condicoes-de-uso'),
-    ],
-
-
 Funções do plugin
 1- Define novo termo de uso
 a) Criar um parametro de data que indica a partir de quando o novo aceite no termo será exigido.
