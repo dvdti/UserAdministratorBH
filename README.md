@@ -2,8 +2,6 @@
 
 Clonando git clone https://github.com/dvdti/plugin-AdministratorUserBH.git
 
-mv plugin-AdministratorUserBH AdministratorUserBH
-
 Ativando em plugin.php, adicione na sua array de Plugins:
 
  'UserAdministratorBH' => ['namespace' => 'UserAdministratorBH'],
