@@ -16,7 +16,7 @@ class Plugin extends \MapasCulturais\Plugin {
 	public static $dateAcceptTermsMetadata = "dateAcceptTerms";
 	public static $dateBlockUserMetadata = "dateBlockUser";
 	
-	public static $dateNewTerm = '2022/03/04 14:11:00';
+	public static $dateNewTerm = '2022/03/29 09:11:00';
 
     public function _init() {
         
@@ -29,6 +29,13 @@ class Plugin extends \MapasCulturais\Plugin {
 					$app->redirect($urlTerm);				
 				}	
 			}
+		if("$_SERVER[REQUEST_URI]" == "/autenticacao/termos-e-condicoes/" ){
+			$urlTerm = $app->createUrl('auth', 'termos-e-condicoes-de-uso');
+			$app->redirect($urlTerm);
+		}	
+
+
+
         });
          
         $app->hook('GET(auth.termos-e-condicoes-de-uso)',function () use ($app) {
